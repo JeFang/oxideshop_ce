@@ -6836,7 +6836,7 @@ class ArticleTest extends \OxidTestCase
         $aQ[] = "ALTER TABLE oxarticles_set1 ADD OXSTOCKTEXT_5 varchar(255) COLLATE latin1_general_ci NOT NULL DEFAULT ''";
         $aQ[] = "ALTER TABLE oxarticles_set1 ADD OXNOSTOCKTEXT_5 varchar(255) COLLATE latin1_general_ci NOT NULL DEFAULT ''";
 
-        $aQ[] = "CREATE TABLE oxartextends_set1 (OXID char(32) COLLATE latin1_general_ci NOT NULL, PRIMARY KEY (`OXID`)) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci";
+        $aQ[] = "CREATE TABLE oxartextends_set1 (OXID char(32) COLLATE latin1_general_ci NOT NULL, PRIMARY KEY (`OXID`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci";
         $aQ[] = "ALTER TABLE oxartextends_set1 ADD OXLONGDESC_5 text COLLATE latin1_general_ci NOT NULL";
         // @deprecated v5.3 (2016-05-04); Will be moved to own module.
         $aQ[] = "ALTER TABLE oxartextends_set1 ADD OXTAGS_5 varchar(255) COLLATE latin1_general_ci NOT NULL";

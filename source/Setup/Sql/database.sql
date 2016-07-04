@@ -16,7 +16,7 @@ CREATE TABLE `oxacceptedterms` (
   `OXACCEPTEDTIME` datetime NOT NULL default '0000-00-00 00:00:00' COMMENT 'Time, when terms were accepted',
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY (`OXUSERID`, `OXSHOPID`)
-) ENGINE=MyISAM COMMENT='Shows which users has accepted shop terms';
+) ENGINE=InnoDB COMMENT='Shows which users has accepted shop terms';
 
 #
 # Table structure for table `oxaccessoire2article`
@@ -33,7 +33,7 @@ CREATE TABLE `oxaccessoire2article` (
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`),
   KEY `OXARTICLENID` (`OXARTICLENID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between article and its accessory articles';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between article and its accessory articles';
 
 #
 # Table structure for table `oxactions`
@@ -69,7 +69,7 @@ CREATE TABLE `oxactions` (
   PRIMARY KEY  (`OXID`),
   index(`oxsort`),
   index(`OXTYPE`, `OXACTIVE`, `OXACTIVETO`, `OXACTIVEFROM`)
-) ENGINE=MyISAM COMMENT 'Stores information about actions, promotions and banners';
+) ENGINE=InnoDB COMMENT 'Stores information about actions, promotions and banners';
 
 #
 # Data for table `oxactions`
@@ -99,7 +99,7 @@ CREATE TABLE `oxactions2article` (
   PRIMARY KEY  (`OXID`),
   KEY `OXMAINIDX` (`OXSHOPID`,`OXACTIONID`,`OXSORT`),
   KEY `OXARTID` (`OXARTID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between actions and articles';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between actions and articles';
 
 #
 # Table structure for table `oxaddress`
@@ -128,7 +128,7 @@ CREATE TABLE `oxaddress` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `OXUSERID` (`OXUSERID`)
-) ENGINE=MyISAM COMMENT 'Stores user shipping addresses';
+) ENGINE=InnoDB COMMENT 'Stores user shipping addresses';
 
 #
 # Table structure for table `oxadminlog`
@@ -140,7 +140,7 @@ CREATE TABLE `oxadminlog` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   `OXUSERID` char(32) character set latin1 collate latin1_general_ci NOT NULL default '' COMMENT 'User id (oxuser)',
   `OXSQL` text NOT NULL COMMENT 'Logged sql'
-) ENGINE=MyISAM COMMENT 'Logs admin actions';
+) ENGINE=InnoDB COMMENT 'Logs admin actions';
 
 #
 # Table structure for table `oxarticles`
@@ -307,7 +307,7 @@ CREATE TABLE `oxartextends` (
   FULLTEXT KEY `OXTAGS_1` (`OXTAGS_1`),
   FULLTEXT KEY `OXTAGS_2` (`OXTAGS_2`),
   FULLTEXT KEY `OXTAGS_3` (`OXTAGS_3`)
-) ENGINE=MyISAM COMMENT 'Additional information for articles';
+) ENGINE=InnoDB COMMENT 'Additional information for articles';
 
 #
 # Table structure for table `oxattribute`
@@ -326,7 +326,7 @@ CREATE TABLE `oxattribute` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   `OXDISPLAYINBASKET` tinyint(1) NOT NULL default '0' COMMENT 'Display attribute`s value for articles in checkout',
   PRIMARY KEY  (`OXID`)
-) ENGINE=MyISAM COMMENT 'Article attributes';
+) ENGINE=InnoDB COMMENT 'Article attributes';
 
 
 #
@@ -385,7 +385,7 @@ CREATE TABLE `oxcategories` (
    KEY `OXSHOPID` (`OXSHOPID`),
    KEY `OXSORT` (`OXSORT`),
    KEY `OXVAT` (`OXVAT`)
-) ENGINE=MyISAM COMMENT 'Article categories';
+) ENGINE=InnoDB COMMENT 'Article categories';
 
 #
 # Table structure for table `oxcategory2attribute`
@@ -401,7 +401,7 @@ CREATE TABLE `oxcategory2attribute` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Creation time',
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between categories and attributes';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between categories and attributes';
 
 
 #
@@ -421,7 +421,7 @@ CREATE TABLE `oxconfig` (
   PRIMARY KEY  (`OXID`),
   KEY `OXVARNAME` (`OXVARNAME`),
   KEY `listall` (`OXSHOPID`, `OXMODULE`)
-) ENGINE=MyISAM COMMENT 'Shop configuration values';
+) ENGINE=InnoDB COMMENT 'Shop configuration values';
 
 #
 # Data for table `oxconfig`
@@ -670,7 +670,7 @@ CREATE TABLE `oxconfigdisplay` (
   `OXTIMESTAMP`     timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `list` (`OXCFGMODULE`, `OXCFGVARNAME`)
-) ENGINE=MyISAM COMMENT 'Additional configuraion fields';
+) ENGINE=InnoDB COMMENT 'Additional configuraion fields';
 
 INSERT INTO `oxconfigdisplay` (`OXID`, `OXCFGMODULE`, `OXCFGVARNAME`, `OXGROUPING`, `OXVARCONSTRAINT`, `OXPOS`) VALUES
 ('1ec4235c2aee774aa45d772875437919', 'theme:azure', 'sIconsize', 'images', '', 1),
@@ -797,7 +797,7 @@ CREATE TABLE `oxcontents` (
   PRIMARY KEY  (`OXID`),
   UNIQUE KEY `OXLOADID` (`OXLOADID`),
   INDEX `cat_search` ( `OXTYPE` , `OXSHOPID` , `OXSNIPPET` , `OXCATID` )
-) ENGINE=MyISAM COMMENT 'Content pages (Snippets, Menu, Categories, Manual)';
+) ENGINE=InnoDB COMMENT 'Content pages (Snippets, Menu, Categories, Manual)';
 
 #
 # Table structure for table `oxcontents`
@@ -900,7 +900,7 @@ CREATE TABLE `oxcountry` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY (`OXACTIVE`)
-) ENGINE=MyISAM COMMENT 'Countries list';
+) ENGINE=InnoDB COMMENT 'Countries list';
 
 #
 # Data for table `oxcountry`
@@ -1167,7 +1167,7 @@ CREATE TABLE `oxdel2delset` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `OXDELID` (`OXDELID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between Shipping cost rules (oxdelivery) and delivery methods (oxdeliveryset)';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between Shipping cost rules (oxdelivery) and delivery methods (oxdeliveryset)';
 
 #
 # Table structure for table `oxdelivery`
@@ -1196,7 +1196,7 @@ CREATE TABLE `oxdelivery` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `OXSHOPID` (`OXSHOPID`)
-)  ENGINE=MyISAM COMMENT 'Delivery shipping cost rules';
+)  ENGINE=InnoDB COMMENT 'Delivery shipping cost rules';
 
 #
 # Table structure for table `oxdeliveryset`
@@ -1218,7 +1218,7 @@ CREATE TABLE `oxdeliveryset` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Creation time',
   PRIMARY KEY  (`OXID`),
   KEY `OXSHOPID` (`OXSHOPID`)
-) ENGINE=MyISAM COMMENT 'Delivery (shipping) methods';
+) ENGINE=InnoDB COMMENT 'Delivery (shipping) methods';
 
 #
 # Data for table `oxdeliveryset`
@@ -1257,7 +1257,7 @@ CREATE TABLE `oxdiscount` (
   KEY `OXACTIVE` (`OXACTIVE`),
   KEY `OXACTIVEFROM` (`OXACTIVEFROM`),
   KEY `OXACTIVETO` (`OXACTIVETO`)
-) ENGINE=MyISAM COMMENT 'Article discounts';
+) ENGINE=InnoDB COMMENT 'Article discounts';
 
 #
 # Table structure for table `oxfiles`
@@ -1278,7 +1278,7 @@ CREATE TABLE IF NOT EXISTS `oxfiles` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Creation time',
   PRIMARY KEY (`OXID`),
   KEY `OXARTID` (`OXARTID`)
-) ENGINE=MyISAM COMMENT 'Files available for users to download';
+) ENGINE=InnoDB COMMENT 'Files available for users to download';
 
 #
 # Table structure for table `oxgroups`
@@ -1296,7 +1296,7 @@ CREATE TABLE `oxgroups` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `OXACTIVE` (`OXACTIVE`)
-) ENGINE=MyISAM COMMENT 'User groups';
+) ENGINE=InnoDB COMMENT 'User groups';
 
 #
 # Data for table `oxgroups`
@@ -1337,7 +1337,7 @@ CREATE TABLE IF NOT EXISTS `oxinvitations` (
    `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
     KEY `OXUSERID` (`OXUSERID`),
     KEY `OXDATE` (`OXDATE`)
-) ENGINE=MYISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT 'User sent invitations';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT 'User sent invitations';
 
 #
 # Table structure for table `oxlinks`
@@ -1360,7 +1360,7 @@ CREATE TABLE `oxlinks` (
   KEY `OXSHOPID` (`OXSHOPID`),
   KEY `OXINSERT` (`OXINSERT`),
   KEY `OXACTIVE` (`OXACTIVE`)
-) ENGINE=MyISAM COMMENT 'Links';
+) ENGINE=InnoDB COMMENT 'Links';
 
 #
 # Table structure for table `oxmanufacturers`
@@ -1384,7 +1384,7 @@ CREATE TABLE `oxmanufacturers` (
   `OXSHOWSUFFIX` tinyint(1) NOT NULL default '1' COMMENT 'Show SEO Suffix in Category',
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`)
-) ENGINE=MyISAM COMMENT 'Shop manufacturers';
+) ENGINE=InnoDB COMMENT 'Shop manufacturers';
 
 #
 # Table structure for table `oxmediaurls`
@@ -1406,7 +1406,7 @@ CREATE TABLE `oxmediaurls` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
  PRIMARY KEY ( `OXID` ) ,
  INDEX ( `OXOBJECTID` )
-) ENGINE = MYISAM COMMENT 'Stores objects media';
+) ENGINE = InnoDB COMMENT 'Stores objects media';
 
 #
 # Table structure for table `oxnews`
@@ -1438,7 +1438,7 @@ CREATE TABLE `oxnews` (
   KEY `OXACTIVE` (`OXACTIVE`),
   KEY `OXACTIVEFROM` (`OXACTIVEFROM`),
   KEY `OXACTIVETO` (`OXACTIVETO`)
-) ENGINE=MyISAM COMMENT 'Shop news';
+) ENGINE=InnoDB COMMENT 'Shop news';
 
 #
 # Table structure for table `oxnewsletter`
@@ -1455,7 +1455,7 @@ CREATE TABLE `oxnewsletter` (
   `OXSUBJECT` varchar(255) character set latin1 collate latin1_general_ci NOT NULL default '' COMMENT 'Subject',
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`)
-) ENGINE=MyISAM COMMENT 'Templates for sending newsletters';
+) ENGINE=InnoDB COMMENT 'Templates for sending newsletters';
 
 #
 # Table structure for table `oxnewssubscribed`
@@ -1479,7 +1479,7 @@ CREATE TABLE `oxnewssubscribed` (
   PRIMARY KEY (`OXID`),
   UNIQUE KEY `OXEMAIL` (`OXEMAIL`),
   KEY `OXUSERID` (`OXUSERID`)
-) ENGINE=MyISAM COMMENT 'User subscriptions';
+) ENGINE=InnoDB COMMENT 'User subscriptions';
 
 #
 # Data for table `oxnewssubscribed`
@@ -1502,7 +1502,7 @@ CREATE TABLE IF NOT EXISTS `oxobject2action` (
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`),
   KEY `OXACTIONID` (`OXACTIONID`,`OXCLASS`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT 'Shows many-to-many relationship between actions (oxactions) and objects (table set by oxclass)';
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci COMMENT 'Shows many-to-many relationship between actions (oxactions) and objects (table set by oxclass)';
 
 #
 # Table structure for table `oxobject2article`
@@ -1519,7 +1519,7 @@ CREATE TABLE `oxobject2article` (
   PRIMARY KEY  (`OXID`),
   KEY `OXARTICLENID` (`OXARTICLENID`),
   KEY `OXOBJECTID` (`OXOBJECTID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between cross-selling articles';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between cross-selling articles';
 
 #
 # Table structure for table `oxobject2attribute`
@@ -1540,7 +1540,7 @@ CREATE TABLE `oxobject2attribute` (
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`),
   KEY `OXATTRID` (`OXATTRID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between articles and attributes';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between articles and attributes';
 
 #
 # Table structure for table `oxobject2category`
@@ -1560,7 +1560,7 @@ CREATE TABLE `oxobject2category` (
   KEY ( `OXOBJECTID` ),
   KEY (`OXPOS`),
   KEY `OXTIME` (`OXTIME`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between articles and categories';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between articles and categories';
 
 #
 # Table structure for table `oxobject2delivery`
@@ -1577,7 +1577,7 @@ CREATE TABLE `oxobject2delivery` (
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`),
   KEY `OXDELIVERYID` ( `OXDELIVERYID` , `OXTYPE` )
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between delivery cost rules and objects (table determined by oxtype)';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between delivery cost rules and objects (table determined by oxtype)';
 
 #
 # Table structure for table `oxobject2discount`
@@ -1594,7 +1594,7 @@ CREATE TABLE `oxobject2discount` (
   PRIMARY KEY  (`OXID`),
   KEY `oxobjectid` (`OXOBJECTID`),
   KEY `oxdiscidx` (`OXDISCOUNTID`,`OXTYPE`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between discounts and objects (table determined by oxtype)';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between discounts and objects (table determined by oxtype)';
 
 #
 # Table structure for table `oxobject2group`
@@ -1611,7 +1611,7 @@ CREATE TABLE `oxobject2group` (
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`),
   KEY `OXGROUPSID` (`OXGROUPSID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between users and groups';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between users and groups';
 
 INSERT INTO `oxobject2group` (`OXID`, `OXSHOPID`, `OXOBJECTID`, `OXGROUPSID`) VALUES
 ('e913fdd8443ed43e1.51222316', 'oxbaseshop', @defaultAdminId, 'oxidadmin');
@@ -1631,7 +1631,7 @@ CREATE TABLE `oxobject2list` (
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`),
   KEY `OXLISTID` (`OXLISTID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between articles and listmania lists';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between articles and listmania lists';
 
 #
 # Table structure for table `oxobject2payment`
@@ -1648,7 +1648,7 @@ CREATE TABLE `oxobject2payment` (
   PRIMARY KEY  (`OXID`),
   KEY ( `OXOBJECTID` ),
   KEY ( `OXPAYMENTID` )
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between payments and objects (table determined by oxtype)';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between payments and objects (table determined by oxtype)';
 
 #
 # Table structure for table `oxobject2selectlist`
@@ -1665,7 +1665,7 @@ CREATE TABLE `oxobject2selectlist` (
   PRIMARY KEY  (`OXID`),
   KEY `OXOBJECTID` (`OXOBJECTID`),
   KEY `OXSELNID` (`OXSELNID`)
-) ENGINE=MyISAM COMMENT 'Shows many-to-many relationship between articles and selection lists';
+) ENGINE=InnoDB COMMENT 'Shows many-to-many relationship between articles and selection lists';
 
 #
 # Table structure for table `oxobject2seodata`
@@ -1683,7 +1683,7 @@ CREATE TABLE `oxobject2seodata` (
   `OXDESCRIPTION` TEXT NOT NULL COMMENT 'Description',
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY ( `OXOBJECTID` , `OXSHOPID` , `OXLANG` )
-) ENGINE = MYISAM  COMMENT 'Seo entries';
+) ENGINE = InnoDB  COMMENT 'Seo entries';
 
 #
 # Table structure for table `oxorder`
@@ -1888,7 +1888,7 @@ CREATE TABLE `oxpayments` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `OXACTIVE` (`OXACTIVE`)
-) ENGINE=MyISAM COMMENT 'Payment methods';
+) ENGINE=InnoDB COMMENT 'Payment methods';
 
 #
 # Data for table `oxpayments`
@@ -1919,7 +1919,7 @@ CREATE TABLE `oxprice2article` (
   PRIMARY KEY  (`OXID`),
   KEY `OXSHOPID` (`OXSHOPID`),
  KEY `OXARTID` (`OXARTID`)
-) ENGINE=MyISAM COMMENT 'Article scale prices';
+) ENGINE=InnoDB COMMENT 'Article scale prices';
 
 #
 # Table structure for table `oxpricealarm`
@@ -1940,7 +1940,7 @@ CREATE TABLE `oxpricealarm` (
   `OXSENDED` datetime NOT NULL default '0000-00-00 00:00:00' COMMENT 'Time, when notification was sent',
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY (`OXID`)
-) ENGINE=MyISAM COMMENT 'Price fall alarm requests';
+) ENGINE=InnoDB COMMENT 'Price fall alarm requests';
 
 #
 # Table structure for table `oxratings`
@@ -1958,7 +1958,7 @@ CREATE TABLE `oxratings` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `oxobjectsearch` (`OXTYPE`,`OXOBJECTID`)
-) ENGINE=MyISAM COMMENT 'Articles and Listmania ratings';
+) ENGINE=InnoDB COMMENT 'Articles and Listmania ratings';
 #
 # Table structure for table `oxrecommlists`
 #
@@ -1976,7 +1976,7 @@ CREATE TABLE `oxrecommlists` (
   `OXRATING` double NOT NULL default '0' COMMENT 'Rating',
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`)
-) ENGINE=MyISAM COMMENT 'Listmania';
+) ENGINE=InnoDB COMMENT 'Listmania';
 
 #
 # Table structure for table `oxremark`
@@ -1995,7 +1995,7 @@ CREATE TABLE `oxremark` (
   PRIMARY KEY  (`OXID`),
   KEY `OXPARENTID` (`OXPARENTID`),
   KEY `OXTYPE` (`OXTYPE`)
-) ENGINE=MyISAM COMMENT 'User History';
+) ENGINE=InnoDB COMMENT 'User History';
 
 #
 # Table structure for table `oxreviews`
@@ -2016,7 +2016,7 @@ CREATE TABLE `oxreviews` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `oxobjectsearch` (`OXTYPE`,`OXOBJECTID`)
-) ENGINE=MyISAM COMMENT 'Articles and Listmania reviews';
+) ENGINE=InnoDB COMMENT 'Articles and Listmania reviews';
 
 #
 # Table structure for table `oxselectlist`
@@ -2038,7 +2038,7 @@ CREATE TABLE `oxselectlist` (
   `OXVALDESC_3` text NOT NULL,
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`)
-) ENGINE=MyISAM COMMENT 'Selection lists';
+) ENGINE=InnoDB COMMENT 'Selection lists';
 
 #
 # Table structure for table `oxseo`
@@ -2245,7 +2245,7 @@ CREATE TABLE `oxshops` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `OXACTIVE` (`OXACTIVE`)
-) ENGINE=MyISAM COMMENT 'Shop config';
+) ENGINE=InnoDB COMMENT 'Shop config';
 
 #
 # Data for table `oxshops`
@@ -2272,7 +2272,7 @@ CREATE TABLE `oxstates` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY(`OXCOUNTRYID`)
-) ENGINE = MYISAM COMMENT 'US States list';
+) ENGINE = InnoDB COMMENT 'US States list';
 
 #
 # Data for table `oxstates`
@@ -2376,7 +2376,7 @@ CREATE TABLE `oxtplblocks` (
   PRIMARY KEY (`OXID`),
   INDEX `search` (`OXACTIVE`, `OXTEMPLATE`, `OXPOS`),
   INDEX `oxtheme` (`OXTHEME`)
-) ENGINE=MyISAM COMMENT 'Module template blocks';
+) ENGINE=InnoDB COMMENT 'Module template blocks';
 
 INSERT INTO `oxtplblocks` (`OXID`, `OXACTIVE`, `OXSHOPID`, `OXTEMPLATE`, `OXBLOCKNAME`, `OXPOS`, `OXFILE`, `OXMODULE`) VALUES
 ('aba2417d4a2846a07c1575a20479c927', 1, 'oxbaseshop', 'order_overview.tpl', 'admin_order_overview_export', 1, 'views/admin/blocks/order_overview.tpl', 'invoicepdf');
@@ -2428,7 +2428,7 @@ CREATE TABLE `oxuser` (
   KEY `OXACTIVE` (`OXACTIVE`),
   KEY `OXLNAME` (`OXLNAME`),
   KEY `OXUPDATEEXP` (`OXUPDATEEXP`)
-) ENGINE=MyISAM COMMENT 'Shop administrators and users';
+) ENGINE=InnoDB COMMENT 'Shop administrators and users';
 
 #
 # Data for table `oxuser`
@@ -2512,7 +2512,7 @@ CREATE TABLE `oxvendor` (
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`),
   KEY `OXACTIVE` (`OXACTIVE`)
-) ENGINE=MyISAM COMMENT 'Distributors list';
+) ENGINE=InnoDB COMMENT 'Distributors list';
 
 #
 # Table structure for table `oxvouchers`
@@ -2585,7 +2585,7 @@ CREATE TABLE `oxwrapping` (
   `OXPRICE` double NOT NULL default '0' COMMENT 'Price',
   `OXTIMESTAMP` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT 'Timestamp',
   PRIMARY KEY  (`OXID`)
-) ENGINE=MyISAM COMMENT 'Wrappings';
+) ENGINE=InnoDB COMMENT 'Wrappings';
 
 
 
