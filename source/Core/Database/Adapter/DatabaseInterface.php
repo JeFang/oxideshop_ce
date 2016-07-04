@@ -19,9 +19,10 @@
  * @copyright (C) OXID eSales AG 2003-2016
  * @version       OXID eShop CE
  */
-namespace OxidEsales\Eshop\Core\Database;
 
-use OxidEsales\Eshop\Core\Database\Adapter\DoctrineResultSet;
+namespace OxidEsales\Eshop\Core\Database\Adapter;
+
+use OxidEsales\Eshop\Core\Database\Adapter\ResultSetInterface;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseException;
 
@@ -213,7 +214,7 @@ interface DatabaseInterface
      *
      * @throws DatabaseException The exception, that can occur while executing the sql statement.
      *
-     * @return DoctrineResultSet
+     * @return ResultSetInterface
      */
     public function select($sqlSelect, $parameters = array(), $executeOnSlave = true);
 
@@ -244,7 +245,7 @@ interface DatabaseInterface
      *
      * @throws DatabaseException The exception, that can occur while executing the sql statement.
      *
-     * @return DoctrineResultSet The result of the given query.
+     * @return ResultSetInterface The result of the given query.
      */
     public function selectLimit($sqlSelect, $rowCount = -1, $offset = -1, $parameters = array(), $executeOnSlave = true);
 

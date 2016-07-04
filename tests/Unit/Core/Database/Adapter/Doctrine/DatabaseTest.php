@@ -21,7 +21,7 @@
  */
 namespace Unit\Core\Database;
 
-use OxidEsales\Eshop\Core\Database\Doctrine;
+use OxidEsales\Eshop\Core\Database\Adapter\Doctrine\Database;
 use OxidEsales\TestingLibrary\UnitTestCase;
 
 /**
@@ -29,11 +29,11 @@ use OxidEsales\TestingLibrary\UnitTestCase;
  *
  * @group database-adapter
  */
-class DoctrineTest extends UnitTestCase
+class DatabaseTest extends UnitTestCase
 {
 
     /**
-     * @var Doctrine The doctrine database we want to test in this class.
+     * @var Database The doctrine database we want to test in this class.
      */
     protected $database = null;
 

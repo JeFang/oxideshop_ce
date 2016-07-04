@@ -20,11 +20,11 @@
  * @version       OXID eShop CE
  */
 
-namespace OxidEsales\Eshop\Tests\Integration\Core\Database;
+namespace OxidEsales\Eshop\Tests\Integration\Core\Database\Adapter;
 
 use OxidEsales\Eshop\Core\ConfigFile;
 use OxidEsales\Eshop\Core\Database;
-use OxidEsales\Eshop\Core\Database\DatabaseInterface;
+use OxidEsales\Eshop\Core\Database\Adapter\DatabaseInterface;
 use OxidEsales\Eshop\Core\Registry;
 use ReflectionClass;
 

@@ -19,7 +19,10 @@
  * @copyright (C) OXID eSales AG 2003-2016
  * @version       OXID eShop CE
  */
-namespace OxidEsales\Eshop\Core\Database\Adapter;
+
+namespace OxidEsales\Eshop\Core\Database\Adapter\Doctrine;
+
+use OxidEsales\Eshop\Core\Database\Adapter\ResultSetInterface;
 
 /**
  * The doctrine statement wrapper, to support the old adodblite interface.
@@ -27,7 +30,7 @@ namespace OxidEsales\Eshop\Core\Database\Adapter;
  *
  * @package OxidEsales\Eshop\Core\Database
  */
-class DoctrineEmptyResultSet implements \IteratorAggregate, ResultSetInterface
+class EmptyResultSet implements \IteratorAggregate, ResultSetInterface
 {
 
     /**
